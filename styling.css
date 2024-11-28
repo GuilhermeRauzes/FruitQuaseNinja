@@ -1,0 +1,330 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+html, body {
+    height: 100%;
+    background: radial-gradient(circle, #F9F4C0, #F26A4D);
+    color: #333;
+}
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 16px;
+}
+#container {
+    width: 750px;
+    height: 600px;
+    background-color: #F1F1F1;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+#score {
+    background-color: #F9D77E;
+    color: #D35400;
+    padding: 15px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    font-size: 1.2em;
+    text-align: center;
+}
+#correct, #wrong {
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #42E252; 
+    color: white;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: none;
+}
+#wrong {
+    background-color: #E74C3C;
+}
+#fruitsContainer {
+    width: 650px;
+    height: 400px;
+    background-color: #F9F9F9;
+    margin: 50px auto 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+#instruction {
+    width: 450px;
+    height: 50px;
+    background-color: #F6A1B1;
+    margin: 10px auto;
+    text-align: center;
+    line-height: 45px;
+    font-weight: bold;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    color: #FFF;
+}
+#choices {
+    width: 450px;
+    height: 100px;
+    margin: 5px auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.box {
+    width: 85px;
+    height: 85px;
+    background-color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    text-align: center;
+    line-height: 85px;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+.box:hover {
+    background-color: #FFAB40;
+    color: white;
+    transform: scale(1.1);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+#startreset {
+    width: 150px;
+    padding: 15px;
+    text-align: center;
+    background-color: #FF7043;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: absolute;
+    bottom: 8px;
+    left: 39.8%;
+}
+#startreset:hover {
+    background-color: #D84B39;
+    transform: scale(1.05);
+}
+#startreset:active {
+    background-color: #C84C2D; 
+    transform: scale(1);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+}
+#trialsLeft {
+    width: 130px;
+    height: 40px;
+    position: absolute;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #FFEB3B; 
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.life {
+    width: 20px;
+    height: 20px;
+    margin: 0 5px;
+}
+#gameOver {
+    width: 500px;
+    height: 250px;
+    background: linear-gradient(145deg, #FF6F61, #FFB06B);
+    color: white;
+    font-size: 3em;
+    text-align: center;
+    align-content: center;
+    display: flex;
+    font-family: 'Segoe UI', sans-serif;
+    text-transform: uppercase;
+    position: absolute;
+    top: 170px;
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 15px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3); 
+    animation: fadeIn 0.5s ease-out; 
+    display: none;
+    overflow: hidden; 
+}
+#gameOver span {
+    display: block;
+    font-size: 1.5em;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+.fruit {
+    display: none;
+    position: absolute;
+}
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-500px) translateX(-50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translateX(-50%);
+    }
+}
+@media (max-width: 768px) {
+    #startreset {
+        width: 150px;
+        padding: 15px;
+        text-align: center;
+        background-color: #FF7043;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        position: absolute;  /* Usando absolute para centralizar com relação ao contêiner */
+        bottom: -20px;
+        left: 50%;            /* Centraliza horizontalmente */
+        transform: translateX(-50%);  /* Ajusta o deslocamento para o centro */
+        z-index: 10;
+    }
+    /* Contêiner principal */
+    #container {
+        width: 95%;
+        height: auto;
+        padding: 20px;
+        position: relative;  /* Necessário para o #startreset ser centralizado dentro */
+    }
+    #score {
+        font-size: 1em;
+        padding: 12px;
+        top: 20px;
+        right: 20px;
+        text-align: center;
+    }
+    #trialsLeft {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        transform: translateX(0);
+    }
+    #fruitsContainer {
+        width: 90%;
+        height: 300px;
+    }
+    #instruction {
+        width: 100%;  /* Garante que o instruction ocupe toda a largura disponível */
+        font-size: 1.1em;
+    }
+    #choices {
+        width: 100%;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+    }
+    .box {
+        width: 70px;
+        height: 70px;
+        margin-bottom: 10px;
+    }
+    #gameOver {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        font-size: 2em;
+        padding: 20px;
+    }
+    #gameOver span {
+        font-size: 1.2em;
+    }
+}
+@media (max-width: 375px) {
+    body {
+        font-size: 14px;
+    }
+    #container {
+        width: 85%;
+        height: auto;
+        padding: 10px;
+        position: relative;  /* Garantir que o botão startreset se posicione corretamente dentro */
+    }
+    #score {
+        font-size: 0.9em;
+        padding: 10px;
+        top: 20px;
+        right: 20px;
+        height: 30px;
+        text-align: center;
+        align-items: center;
+    }
+    #startreset {
+        width: 150px;  /* Garantir que a largura do botão esteja ok */
+        padding: 15px;
+        text-align: center;
+        background-color: #FF7043;
+        color: white;
+        border-radius: 10px;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        position: absolute !important;  /* Usando absoluto */
+        bottom: -30px;
+        left: 50%;  /* Centralizando o botão */
+        transform: translateX(-50%);  /* Ajuste final para centralizar */
+        z-index: 10;
+    }
+    #instruction {
+        width: 100%;  /* Garante que o instruction ocupe toda a largura disponível */
+        font-size: 1em;
+    }
+    #choices {
+        width: 100%;
+        flex-direction: column;
+    }
+    .box {
+        width: 60px;
+        height: 60px;
+    }
+    #gameOver {
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 80%;
+        font-size: 1.8em;
+        padding: 10px;
+    }
+    #gameOver span {
+        font-size: 1.1em;
+    }
+    #trialsLeft {
+        top: 15px;
+    }
+}
+@media (max-width: 767px) {
+    #gameOver {
+        bottom: 10px;
+        font-size: 1.5em;
+        width: 80%;
+        padding: 15px;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+}
