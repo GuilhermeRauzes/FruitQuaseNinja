@@ -95,7 +95,7 @@ $(function(){
         
         // Define uma posição aleatória para a fruta dentro da largura do contêiner
         var leftPosition = Math.round(Math.random() * (containerWidth - fruitWidth)); // Posição aleatória dentro do container
-        $("#fruit1").css({'left': leftPosition, 'top': -50}); // Define a posição inicial da fruta (acima da tela)
+        $("#fruit1").css({'left': leftPosition, 'top': -75}); // Define a posição inicial da fruta (acima da tela)
         
         // Gera uma velocidade aleatória para a queda da fruta
         step = 1 + Math.round(5 * Math.random()); // Variando a velocidade da queda
